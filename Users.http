@@ -1,0 +1,21 @@
+﻿GET https://localhost:5001/api/Users/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkb25hbGQiLCJlbWFpbCI6IiIsIkRhdGUiOiI4LzI2LzIwMjEgOTowNzoxOSBQTSIsImp0aSI6ImI5NWE5OGEzLTVhOGItNDY2My04YmU3LTE2NzY4MjM2NjAyZSIsImV4cCI6MTYyOTk4MzUzOSwiaXNzIjoiZnJlZWNvZGVzcG90LmNvbSIsImF1ZCI6ImZyZWVjb2Rlc3BvdC5jb20ifQ.uW8KZ8PbMsJGs4Pw_kWfzuYjy9T1ibfqcsjg-iUHj1Q
+
+###
+POST https://localhost:5001/api/Users
+Content-Type: application/json
+
+{
+    "userName": "donald",
+    "password": "123456"
+}
+
+###
+POST https://localhost:5001/api/Users/login
+Content-Type: application/json
+
+{
+    "userName": "donald",
+    "password": "123456"
+}

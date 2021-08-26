@@ -1,0 +1,26 @@
+﻿GET https://localhost:5001/api/TodoItems
+Accept: application/json
+
+###
+GET https://localhost:5001/api/TodoItems/1
+Accept: application/json
+
+###
+POST https://localhost:5001/api/TodoItems
+Content-Type: application/json
+
+{
+    "name": "xxx22",
+    "isComplete": true,
+    "secret": "fff"
+}
+
+###
+PUT https://localhost:5001/api/TodoItems/1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "name": "feed fish",
+    "isComplete": true
+}
