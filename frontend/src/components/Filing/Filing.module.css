@@ -1,0 +1,16 @@
+.wrapper {
+    padding: 8px 0;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 8px;
+}
+
+.item {
+    margin: 0 8px;
+}

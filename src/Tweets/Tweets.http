@@ -1,0 +1,26 @@
+﻿GET https://localhost:5001/api/tweets
+Accept: application/json
+
+###
+GET https://localhost:5001/api/tweets/1
+Accept: application/json
+
+###
+POST https://localhost:5001/api/tweets
+Content-Type: application/json
+
+{
+    "authorId": "1",
+    "title": "Tweet one",
+    "content": "xxx"
+}
+
+###
+POST https://localhost:5001/api/tweets/1
+Content-Type: application/json
+
+{
+    "authorId": 1,
+    "title": "feed fish",
+    "content": "feed fish"
+}

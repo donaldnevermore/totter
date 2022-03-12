@@ -1,0 +1,23 @@
+﻿POST https://localhost:5001/api/users
+Content-Type: application/json
+
+{
+    "userName": "donald",
+    "password": "123456"
+}
+
+###
+POST https://localhost:5001/api/users/login
+Content-Type: application/json
+
+{
+    "userName": "donald",
+    "password": "123456"
+}
+
+###
+GET https://localhost:5001/api/users/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkb25hbGQiLCJlbWFpbCI6IiIsIkRhdGUiOiI4LzMwLzIwMjEgMTI6Mzc6MjEgQU0iLCJqdGkiOiJlMTViMWExYi0yMWJhLTRjOGYtOGVlMy05Y2FhYWRmYzI2ZDEiLCJleHAiOjE2MzAyNjk0NDEsImlzcyI6Ik1ZX05BTUVfSVNfRE9OQUxEIiwiYXVkIjoiTVlfTkFNRV9JU19ET05BTEQifQ.Xd89xyXXhyke9Ey1fLlfoFaiIzMdzmDb6pJlSkVhuZg
+
+###
