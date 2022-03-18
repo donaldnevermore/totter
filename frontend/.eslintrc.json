@@ -25,6 +25,7 @@
                 "named": "never",
                 "asyncArrow": "never"
             }
-        ]
+        ],
+        "no-unused-vars": "warn"
     }
 }

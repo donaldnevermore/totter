@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import axios from "axios"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { useNavigate } from "react-router-dom"
@@ -53,28 +52,28 @@ function Center(props: Props) {
         })
     }
 
-    const handleSave = async () => {
+    const handleSave = async() => {
         const formData = new FormData()
         formData.append("name", name.trim())
         formData.append("avatar", file)
         try {
-            const { data } = await axios.post(
-                `/api/users/${user.id}/`,
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    }
-                }
-            )
-            // message.success("保存成功");
-            update({
-                user: {
-                    ...user,
-                    name: data.name,
-                    avatar: data.avatar
-                }
-            })
+            // const { data } = await axios.post(
+            //     `/api/users/${user.id}/`,
+            //     formData,
+            //     {
+            //         headers: {
+            //             "Content-Type": "multipart/form-data"
+            //         }
+            //     }
+            // )
+            // // message.success("保存成功");
+            // update({
+            //     user: {
+            //         ...user,
+            //         name: data.name,
+            //         avatar: data.avatar
+            //     }
+            // })
         }
         catch (err) {
             console.log(err)

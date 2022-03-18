@@ -5,17 +5,14 @@ import reportWebVitals from "./reportWebVitals"
 
 import "./index.css"
 import App from "./App"
-import { TweetList } from "components/Tweets/List"
-import { LoginForm } from "components/Login/Form"
-import { AddTweet } from "components/Tweets/AddTweet"
-import { Chat } from "components/Chat/Chat"
+import { Main } from "pages/Main/Main"
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route path="tweets" element={<TweetList/>}/>
+                    <Route path="tweets" element={<Main />}/>
                 </Route>
             </Routes>
         </BrowserRouter>

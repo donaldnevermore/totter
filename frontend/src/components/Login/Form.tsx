@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
@@ -29,14 +28,14 @@ function FormCore(props: Props) {
 
     const onFinished = (values: any) => {
         switch (status) {
-            case "login":
-                login(values)
-                break
-            case "signup":
-                signup(values)
-                break
-            default:
-                break
+        case "login":
+            login(values)
+            break
+        case "signup":
+            signup(values)
+            break
+        default:
+            break
         }
     }
 
@@ -45,35 +44,35 @@ function FormCore(props: Props) {
             if (!value || getFieldValue("password") === value) {
                 return Promise.resolve()
             }
-            return Promise.reject("两次输入密码不一致")
+            // return Promise.reject("两次输入密码不一致")
         }
     })
 
-    const login = async (options: any) => {
+    const login = async(options: any) => {
         try {
-            const { data } = await axios.post("/api/users/login/", options)
-            if (data.error) {
-                switch (data.code) {
-                    case 1:
-                        break
-                    case 2:
-                        break
-                    default:
-                        break
-                }
-                return
-            }
+            // const { data } = await axios.post("/api/users/login/", options)
+            // if (data.error) {
+            //     switch (data.code) {
+            //         case 1:
+            //             break
+            //         case 2:
+            //             break
+            //         default:
+            //             break
+            //     }
+            //     return
+            // }
 
             const { update } = props
-            update({
-                user: {
-                    token: data.token,
-                    id: data.id,
-                    username: data.username,
-                    name: data.name,
-                    avatar: data.avatar
-                }
-            })
+            // update({
+            //     user: {
+            //         token: data.token,
+            //         id: data.id,
+            //         username: data.username,
+            //         name: data.name,
+            //         avatar: data.avatar
+            //     }
+            // })
             navigate("/")
         }
         catch (e) {
@@ -82,23 +81,23 @@ function FormCore(props: Props) {
         }
     }
 
-    const signup = async (options: any) => {
+    const signup = async(options: any) => {
         try {
-            const { data } = await axios.post("/api/users/", options)
-            if (data.error) {
-                return
-            }
+            // const { data } = await axios.post("/api/users/", options)
+            // if (data.error) {
+            //     return
+            // }
 
-            const { update } = props
-            update({
-                user: {
-                    token: data.token,
-                    id: data.id,
-                    username: data.username,
-                    name: data.name,
-                    avatar: data.avatar
-                }
-            })
+            // const { update } = props
+            // update({
+            //     user: {
+            //         token: data.token,
+            //         id: data.id,
+            //         username: data.username,
+            //         name: data.name,
+            //         avatar: data.avatar
+            //     }
+            // })
             navigate("/")
         }
         catch (e) {
@@ -113,9 +112,8 @@ function FormCore(props: Props) {
             return Promise.resolve()
         }
 
-        return Promise.reject("用户名需要以字母开头，只能包含字母数字下划线，长度为 4 至 16 个字符")
+        // return Promise.reject("用户名需要以字母开头，只能包含字母数字下划线，长度为 4 至 16 个字符")
     }
-
 
     let loginOrSignup: JSX.Element
     if (status === "login") {

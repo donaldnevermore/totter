@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Component } from "react"
-import axios from "axios"
 // import ReactMarkdown from "react-markdown";
 import moment from "moment"
 import { connect } from "react-redux"
@@ -41,25 +40,10 @@ function PostView({ issue, commentList, user, onCommentAdd }: any) {
         <div>
             <div className={styles.white}>
                 <Box>{issue.title}</Box>
-                {/*<ReactMarkdown source={issue.content} />*/}
+                {/* <ReactMarkdown source={issue.content} /> */}
             </div>
             <List />
             <AddComment user={user} onCommentAdd={onCommentAdd} />
-        </div>
-    )
-}
-
-function Editor({ onChange, onSubmit, submitting, value }: any) {
-    return (
-        <div>
-            <Box>
-                <Input rows={4} onChange={onChange} value={value} />
-            </Box>
-            <Box>
-                <Button>
-                    评论
-                </Button>
-            </Box>
         </div>
     )
 }
@@ -68,7 +52,7 @@ function AddComment({ user, onCommentAdd }: any) {
     const [comment, setComment] = useState("")
     const [submitting, setSubmitting] = useState(false)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async() => {
         if (!comment) {
             return
         }
@@ -77,12 +61,12 @@ function AddComment({ user, onCommentAdd }: any) {
 
         try {
             const { id } = { id: 1 }
-            const { data } = await axios.post(API.COMMENTS, {
-                author_id: user.id,
-                issue_id: id,
-                content: comment,
-                parent_id: null
-            })
+            // const { data } = await axios.post(API.COMMENTS, {
+            //     author_id: user.id,
+            //     issue_id: id,
+            //     content: comment,
+            //     parent_id: null
+            // })
             onCommentAdd()
         }
         catch (err) {
@@ -100,14 +84,6 @@ function AddComment({ user, onCommentAdd }: any) {
     return (
         <Comment className={styles.addComment}
             avatar={<Avatar src={user.avatar} alt="avatar" />}
-            content={
-                <Editor
-                    onChange={handleChange}
-                    onSubmit={handleSubmit}
-                    submitting={submitting}
-                    value={comment}
-                />
-            }
         />
     )
 }
@@ -126,10 +102,10 @@ class PostState extends Component {
     async componentDidMount() {
         try {
             const { id } = { id: 1 }
-            const { data } = await axios.get(`${API.TWEETS}${id}/`)
-            this.setState({
-                issue: data.issue
-            })
+            // const { data } = await axios.get(`${API.TWEETS}${id}/`)
+            // this.setState({
+            //     issue: data.issue
+            // })
             this.getCommentList()
         }
         catch (err) {
@@ -137,13 +113,13 @@ class PostState extends Component {
         }
     }
 
-    getCommentList = async () => {
-        const { data } = await axios.get(
-            `${API.COMMENTS}${this.state.issue.id}/`
-        )
-        this.setState({
-            commentList: data.comment_list
-        })
+    getCommentList = async() => {
+        // const { data } = await axios.get(
+        //     `${API.COMMENTS}${this.state.issue.id}/`
+        // )
+        // this.setState({
+        //     commentList: data.comment_list
+        // })
     };
 
     render() {

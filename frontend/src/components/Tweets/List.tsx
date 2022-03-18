@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Pagination } from "@mui/material"
 
-import { Issue, Tweet } from "components/Tweets/Tweet"
+import { Tweet } from "components/Tweets/Tweet"
 import { API } from "shared/api"
 import styles from "./List.module.css"
 
@@ -34,7 +34,6 @@ export function TweetList(props: any) {
         getTweetList()
     }, [page, SIZE])
 
-
     function handleChange(page: number) {
         setPage(page)
         getTweetList()
@@ -42,12 +41,12 @@ export function TweetList(props: any) {
 
     return (
         <div className={styles.item}>
-            {data.map((issue: Issue) => (
+            {/* {data.map((issue: Issue) => (
                 <Tweet issue={issue} key={issue.id} />
             ))}
             <div className={styles.page}>
                 <Pagination />
-            </div>
+            </div> */}
         </div>
     )
 }

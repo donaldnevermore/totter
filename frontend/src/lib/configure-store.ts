@@ -5,7 +5,7 @@ import storage from "redux-persist/lib/storage" // defaults to localStorage for 
 import rootReducer from "./reducers"
 
 const persistConfig = {
-    key: "react_redux_persist_data",
+    key: "REACT_REDUX_PERSIST_DATA",
     storage
 }
 

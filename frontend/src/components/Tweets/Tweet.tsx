@@ -1,17 +1,15 @@
-import React from "react"
-import { Link, BrowserRouter as Router } from "react-router-dom"
-import { Grid, Container, Box, Avatar } from "@mui/material"
+import * as React from "react"
+import { Link } from "react-router-dom"
+import { Avatar } from "@mui/material"
 
 import { Info } from "components/Tweets/Info"
 import { URL } from "shared/url"
 import styles from "components/Tweets/Tweet.module.css"
 
-export interface Issue {
+export interface TweetItem {
     title: string
     id: number
     content: string
-    score: number
-    views: number
     created_at: number
     updated_at: number
     author: {
@@ -22,30 +20,40 @@ export interface Issue {
     }
 }
 
-export function Tweet(props: { issue: Issue }) {
-    const { issue } = props
+export function Tweet(props: { tweet: any }) {
+    // const { tweet } = props
+    const tweet: any = {}
 
     return (
-        <Grid container>
-            <Grid item >
-                <Avatar className={styles.score}>{issue.score || "?"}</Avatar>
-                <Box>{issue.views}</Box>
-            </Grid>
-            <Grid item >
-                <div className={styles.item}>
-                    <Router>
-                        <Link to={`${URL.TWEETS}${issue.id}`}>
-                            {issue.title}
-                        </Link>
-                    </Router>
+        <div>
+            <article className={styles.article}>
+                <div className={styles.menu}>
+                    <Avatar className={styles.avatar}>xxx</Avatar>
                 </div>
-                <div className={styles.content}>{issue.content}</div>
-                <Info
-                    author={issue.author.name}
-                    createdAt={issue.created_at}
-                    updatedAt={issue.updated_at}
-                />
-            </Grid>
-        </Grid>
+                <div className={styles.content}>
+                    <div className={styles.head}>
+                        <span className={styles.name}>nameesjdflk</span>
+                        <span >@username</span>
+                        <span className={styles.dot}>·</span>
+                        <time className={styles.time}>2h</time>
+                    </div>
+                    <div className={styles.body}>新开了一个标签 #深海的面条 记录和评价我吃的各种面条, 争取一周更一条叭 w</div>
+                </div>
+            </article>
+            <article className={styles.article}>
+                <div className={styles.menu}>
+                    <Avatar className={styles.avatar}>xxx</Avatar>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.head}>
+                        <span className={styles.name}>nameesjdflk</span>
+                        <span >@username</span>
+                        <span className={styles.dot}>·</span>
+                        <time className={styles.time}>2h</time>
+                    </div>
+                    <div className={styles.body}>新开了一个标签 #深海的面条 记录和评价我吃的各种面条, 争取一周更一条叭 w</div>
+                </div>
+            </article>
+        </div>
     )
 }

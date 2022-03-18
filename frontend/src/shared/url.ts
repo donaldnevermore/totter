@@ -3,4 +3,4 @@
  */
 export const URL = {
     TWEETS: "/tweets/"
-};
+}

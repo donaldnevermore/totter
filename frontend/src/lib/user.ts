@@ -8,14 +8,14 @@ export interface User {
     token: string;
 }
 
-export const update = (data: { user: User }) => {
+export function update(data: { user: User }) {
     return {
         type: actions.USER_UPDATE,
         ...data
     }
 }
 
-export const remove = () => {
+export function remove() {
     return {
         type: actions.USER_REMOVE
     }
