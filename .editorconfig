@@ -27,3 +27,7 @@ dotnet_naming_rule.interface_naming.style = pascal
 dotnet_naming_rule.interface_naming.severity = suggestion
 
 dotnet_diagnostic.IDE1006.severity = suggestion
+
+[*.md]
+indent_size = 2
+tab_width = 2
