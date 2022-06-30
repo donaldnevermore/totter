@@ -1,4 +1,4 @@
-﻿namespace Totter.Comments;
+namespace Totter.Comments;
 
 using Totter.Users;
 using Totter.Tweets;

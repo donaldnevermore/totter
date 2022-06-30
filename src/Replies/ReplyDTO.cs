@@ -1,4 +1,4 @@
-﻿namespace Totter.Replies;
+namespace Totter.Replies;
 
 public class ReplyDTO {
     public string Content { get; set; } = string.Empty;

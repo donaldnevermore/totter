@@ -31,7 +31,6 @@ public class CommentsController : ControllerBase {
     [HttpGet("{id}")]
     public async Task<ActionResult<Comment>> GetComment(long id) {
         var comment = await db.Comments.FindAsync(id);
-
         if (comment is null) {
             return NotFound();
         }
@@ -83,7 +82,7 @@ public class CommentsController : ControllerBase {
         db.Comments.Add(comment);
         await db.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, comment);
+        return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, new { id = comment.Id });
     }
 
     [HttpDelete("{id}")]

@@ -1,4 +1,4 @@
-﻿namespace Totter.Mappings;
+namespace Totter.Mappings;
 
 using AutoMapper;
 using Totter.Tweets;

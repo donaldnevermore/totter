@@ -38,8 +38,8 @@ public class TweetsController : ControllerBase {
         return dto;
     }
 
+    // [Authorize]
     [HttpPost("{id}")]
-    [Authorize]
     public async Task<IActionResult> UpdateTweet(long id, TweetDTO tweetInfo) {
         var tweet = await db.Tweets.FindAsync(id);
         if (tweet is null) {
@@ -54,7 +54,6 @@ public class TweetsController : ControllerBase {
             });
         }
 
-        tweet.Title = tweetInfo.Title;
         tweet.Content = tweetInfo.Content;
         tweet.LastUpdated = DateTime.Now;
 
@@ -68,8 +67,8 @@ public class TweetsController : ControllerBase {
         return NoContent();
     }
 
+    // [Authorize]
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> AddTweet(TweetDTO tweetInfo) {
         var author = await db.Users.FindAsync(tweetInfo.AuthorId);
         if (author is null) {
@@ -81,7 +80,6 @@ public class TweetsController : ControllerBase {
 
         var tweet = new Tweet {
             Content = tweetInfo.Content,
-            Title = tweetInfo.Title,
             Author = author,
             LastUpdated = DateTime.Now
         };
@@ -92,8 +90,8 @@ public class TweetsController : ControllerBase {
         return CreatedAtAction(nameof(GetTweet), new { id = tweet.Id }, new { id = tweet.Id });
     }
 
+    // [Authorize]
     [HttpDelete("{id}")]
-    [Authorize]
     public async Task<IActionResult> DeleteTweet(long id) {
         var tweet = await db.Tweets.FindAsync(id);
         if (tweet is null) {

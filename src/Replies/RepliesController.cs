@@ -1,4 +1,4 @@
-namespace Totter.Controllers;
+namespace Totter.Replies;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,18 +15,12 @@ public class RepliesController : ControllerBase {
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Reply>>> GetReplies() {
-        return await db.Replies.ToListAsync();
+        return NotFound();
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Reply>> GetReply(long id) {
-        var reply = await db.Replies.FindAsync(id);
-
-        if (reply == null) {
-            return NotFound();
-        }
-
-        return reply;
+        return NotFound();
     }
 
     [HttpPut("{id}")]
@@ -54,26 +48,35 @@ public class RepliesController : ControllerBase {
 
     [HttpPost]
     public async Task<ActionResult<Reply>> PostReply(Reply reply) {
-        db.Replies.Add(reply);
+        var comment = await db.Comments.FindAsync(reply.CommentId);
+        if (comment is null) {
+            return BadRequest();
+        }
+        var author = await db.Users.FindAsync(reply.AuthorId);
+        if (author is null) {
+            return BadRequest();
+        }
+        var replyTo = await db.Users.FindAsync(reply.ReplyToId);
+
+        var r = new Reply {
+            Content = reply.Content,
+            LastUpdated = DateTime.Now,
+            Author = author,
+            CommentId = comment.Id,
+            ReplyTo = replyTo
+        };
+        comment.Replies.Add(r);
         await db.SaveChangesAsync();
 
-        return CreatedAtAction("GetReply", new { id = reply.Id }, reply);
+        return CreatedAtAction("GetReply", new { id = r.Id }, new { id = r.Id });
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteReply(long id) {
-        var reply = await db.Replies.FindAsync(id);
-        if (reply == null) {
-            return NotFound();
-        }
-
-        db.Replies.Remove(reply);
-        await db.SaveChangesAsync();
-
         return NoContent();
     }
 
     private bool ReplyExists(long id) {
-        return db.Replies.Any(e => e.Id == id);
+        return false;
     }
 }

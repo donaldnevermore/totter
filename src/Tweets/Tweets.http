@@ -1,4 +1,4 @@
-﻿GET https://localhost:5001/api/tweets
+GET https://localhost:5001/api/tweets
 Accept: application/json
 
 ###

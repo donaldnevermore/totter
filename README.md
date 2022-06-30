@@ -1,1 +1,1 @@
-﻿A fake Twitter
+A fake Twitter backend, under development

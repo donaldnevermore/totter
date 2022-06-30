@@ -1,4 +1,4 @@
-﻿namespace Totter.Users;
+namespace Totter.Users;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +23,8 @@ public class UsersController : ControllerBase {
         this.mapper = mapper;
     }
 
+    // [Authorize]
     [HttpGet("{id}")]
-    [Authorize]
     public async Task<ActionResult<GetUserDTO>> GetUser(long id) {
         var user = await db.Users.FindAsync(id);
         if (user is null) {
@@ -35,18 +35,19 @@ public class UsersController : ControllerBase {
         return dto;
     }
 
-    [HttpPost]
     [AllowAnonymous]
+    [HttpPost]
     public async Task<IActionResult> AddUser(LoginDTO signupInfo) {
-        var user = await db.Users.SingleOrDefaultAsync(u => u.UserName == signupInfo.UserName);
+        var user = await db.Users.SingleOrDefaultAsync(u => u.Username == signupInfo.Username);
         if (user is not null) {
+            // TODO: return "already has one"
             return BadRequest();
         }
 
         user = new User {
-            UserName = signupInfo.UserName,
+            Username = signupInfo.Username,
             Password = signupInfo.Password,
-            NickName = signupInfo.UserName,
+            Name = signupInfo.Username,
             LastLoggedIn = DateTime.Now
         };
 
@@ -57,10 +58,10 @@ public class UsersController : ControllerBase {
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, new { id = user.Id, token });
     }
 
-    [HttpPost("login")]
     [AllowAnonymous]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDTO loginInfo) {
-        var user = await db.Users.SingleOrDefaultAsync(u => u.UserName == loginInfo.UserName);
+        var user = await db.Users.SingleOrDefaultAsync(u => u.Username == loginInfo.Username);
         if (user is null) {
             return NotFound();
         }
@@ -82,16 +83,16 @@ public class UsersController : ControllerBase {
         return Ok(new { id = user.Id, token });
     }
 
+    // [Authorize]
     [HttpPost("{id}")]
-    [Authorize]
     public async Task<IActionResult> UpdateUser(long id, UpdateUserDTO userInfo) {
         var user = await db.Users.FindAsync(id);
         if (user is null) {
             return NotFound();
         }
 
-        if (!string.IsNullOrEmpty(userInfo.NickName)) {
-            user.NickName = userInfo.NickName;
+        if (!string.IsNullOrEmpty(userInfo.Name)) {
+            user.Name = userInfo.Name;
         }
 
         if (!string.IsNullOrEmpty(userInfo.Email)) {
@@ -118,7 +119,7 @@ public class UsersController : ControllerBase {
 
         // Claim is used to add identity to JWT token.
         var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, userInfo.UserName),
+                new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username),
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
                 new Claim("Date", DateTime.Now.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
