@@ -6,7 +6,7 @@ using Totter.Users;
 
 public class MappingProfile : Profile {
     public MappingProfile() {
-        CreateMap<User, GetUserDTO>();
-        CreateMap<Tweet, GetTweetDTO>();
+        CreateMap<User, GetUserDto>();
+        CreateMap<Tweet, GetTweetDto>();
     }
 }

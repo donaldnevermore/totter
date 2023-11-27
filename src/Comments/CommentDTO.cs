@@ -2,7 +2,7 @@ namespace Totter.Comments;
 
 using Totter.Users;
 
-public class CommentDTO {
+public class CommentDto {
     public long Id { get; set; }
     public string Content { get; set; } = string.Empty;
     public DateTime Date { get; set; } = DateTime.Now;

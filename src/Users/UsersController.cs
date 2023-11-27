@@ -23,7 +23,6 @@ public class UsersController : ControllerBase {
         this.mapper = mapper;
     }
 
-    // [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<GetUserDTO>> GetUser(long id) {
         var user = await db.Users.FindAsync(id);

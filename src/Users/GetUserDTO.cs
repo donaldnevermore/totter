@@ -1,6 +1,6 @@
 namespace Totter.Users;
 
-public class GetUserDTO {
+public class GetUserDto {
     public long Id { get; set; }
     public string Username { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
